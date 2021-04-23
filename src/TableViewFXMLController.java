@@ -54,38 +54,35 @@ public class TableViewFXMLController implements Initializable {
 
         FilteredList<Product> filteredProducts = new FilteredList<>(products, b->true);
 
-        seacrhTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredProducts.setPredicate(product -> {
+        seacrhTextField.textProperty().addListener((observable, oldValue, newValue) -> filteredProducts.setPredicate(product -> {
 
 
-                        // If filter text is empty, display all products.
+                    // If filter text is empty, display all products.
 
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-
-                        // Compare first name and last name of every person with filter text.
-                        String lowerCaseFilter = newValue.toLowerCase();
-
-                        switch (choiceBox.getValue()){
-                        case "ID":
-                            if ((String.valueOf(product.getId()).startsWith(newValue))) return true; else return false;
-                        case "Name":
-                            if (product.getName().toLowerCase().contains(lowerCaseFilter)) return true; else return false;
-                        case "Price":
-                            if (String.valueOf(product.getPrice()).startsWith(lowerCaseFilter)) return true; else return false;
-                        case "Category":
-                            if (product.getCategory().toLowerCase().contains(lowerCaseFilter)) return true; else return false;
-                        default:
-                            if (String.valueOf(product.getId()).startsWith(newValue)) return true;
-                            else if (product.getName().toLowerCase().contains(lowerCaseFilter)) return true;
-                            else if (String.valueOf(product.getPrice()).startsWith(lowerCaseFilter)) return true;
-                            else if (product.getCategory().toLowerCase().contains(lowerCaseFilter)) return true;
-                            else return false;
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
                     }
 
-            });
-        });
+                    // Compare first name and last name of every person with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    switch (choiceBox.getValue()){
+                    case "ID":
+                        return String.valueOf(product.getId()).startsWith(newValue);
+                    case "Name":
+                        return product.getName().toLowerCase().contains(lowerCaseFilter);
+                    case "Price":
+                        return String.valueOf(product.getPrice()).startsWith(newValue);
+                    case "Category":
+                        return product.getCategory().toLowerCase().contains(lowerCaseFilter);
+                    default:
+                        if (String.valueOf(product.getId()).startsWith(newValue)) return true;
+                        else if (product.getName().toLowerCase().contains(lowerCaseFilter)) return true;
+                        else if (String.valueOf(product.getPrice()).startsWith(newValue)) return true;
+                        else return product.getCategory().toLowerCase().contains(lowerCaseFilter);
+                }
+
+        }));
 
         // 3. Wrap the FilteredList in a SortedList.
         SortedList<Product> sortedProducts = new SortedList<>(filteredProducts);
@@ -118,8 +115,7 @@ public class TableViewFXMLController implements Initializable {
             e.printStackTrace();
         }
 
-        ObservableList<Product> products = FXCollections.observableArrayList(productArrayList);
-        return products;
+        return FXCollections.observableArrayList(productArrayList);
     }
 
 }
