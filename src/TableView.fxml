@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableViewFXMLController">
+   <children>
+      <TableView fx:id="tableView" layoutY="45.0" prefHeight="748.0" prefWidth="800.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="47.094358801841736" text="ID" />
+          <TableColumn fx:id="nameColumn" maxWidth="6000.0" minWidth="450.0" prefWidth="250.0" text="Name" />
+            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="54.339599609375" text="Price" />
+            <TableColumn fx:id="categoryColumn" minWidth="200.0" prefWidth="123.75473022460938" text="Category" />
+        </columns>
+      </TableView>
+      <TextField fx:id="seacrhTextField" layoutX="62.0" layoutY="10.0" prefHeight="25.0" prefWidth="219.0" AnchorPane.topAnchor="10.0" />
+      <Label fx:id="searchLabel" layoutX="14.0" layoutY="13.0" prefHeight="18.0" prefWidth="95.0" text="Search:" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="288.0" layoutY="15.0" text="Filter by:" />
+      <ChoiceBox fx:id="choiceBox" layoutX="343.0" layoutY="11.0" prefHeight="25.0" prefWidth="75.0" AnchorPane.topAnchor="11.0">
+       </ChoiceBox>
+   </children>
+</AnchorPane>
