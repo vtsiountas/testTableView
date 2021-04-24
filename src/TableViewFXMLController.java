@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -6,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import org.controlsfx.control.ToggleSwitch;
 
 import java.io.*;
 import java.net.URL;
@@ -14,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class TableViewFXMLController implements Initializable {
 
+    @FXML
+    AnchorPane root;
     @FXML
     private TableView<Product> tableView;
     @FXML
@@ -28,12 +34,27 @@ public class TableViewFXMLController implements Initializable {
     private TextField seacrhTextField;
     @FXML
     private ChoiceBox<String> choiceBox;
+    @FXML
+    private ToggleSwitch toggleSwitch;
 
 
     private ObservableList<Product> products;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        toggleSwitch.selectedProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if(t1) {
+//                    System.out.println("ON");
+                    root.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
+                } else {
+//                    System.out.println("OFF");
+                    root.getStylesheets().clear();
+                }
+            }
+        });
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -93,7 +114,6 @@ public class TableViewFXMLController implements Initializable {
 
         // 5. Add sorted (and filtered) data to the table.
         tableView.setItems(sortedProducts);
-
 
 
     }
