@@ -5,10 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.io.*;
@@ -19,7 +23,9 @@ import java.util.ResourceBundle;
 public class TableViewFXMLController implements Initializable {
 
     @FXML
-    AnchorPane root;
+    private AnchorPane root;
+    @FXML
+    private Button backButton;
     @FXML
     private TableView<Product> tableView;
     @FXML
@@ -116,6 +122,13 @@ public class TableViewFXMLController implements Initializable {
         tableView.setItems(sortedProducts);
 
 
+    }
+
+    public void viewMainScene() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+
+        Stage primaryStage = (Stage) backButton.getScene().getWindow();
+        primaryStage.setScene(new Scene(root, 800, 800));
     }
 
     private ObservableList<Product> getProducts() {

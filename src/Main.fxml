@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MainFXMLController">
+   <Button fx:id="viewProductsButton" layoutX="-6.0" layoutY="156.0" onAction="#viewProductsScene" prefHeight="82.0"
+           prefWidth="601.0" text="View Products" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <font>
+         <Font name="Quicksand Regular" size="18.0"/>
+      </font>
+   </Button>
+</AnchorPane>
